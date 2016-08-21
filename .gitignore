@@ -1,4 +1,6 @@
 /node_modules
 /bower_components
 /build
-/public
+/public/css
+/public/javscript
+/public/templates
