@@ -1,0 +1,27 @@
+<div class="row" ng-controller='InsuranceCompanyAddController' ng-init="init();">
+
+    <div class="col-md-4">
+        <table class="table table-responsive table-hover">
+            <tr>
+                <td>Name</td>
+            </tr>
+            <tr ng-repeat="ins in insurances.list">
+                <td>{{ins.name}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="col-md-4">
+        <form name="userForm" ng-submit="insurances.add(userForm.$valid)" novalidate>
+            <div class="form-group" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine && submitted }">
+                <input required name="name" ng-minlength="2" type="text" ng-model="insurances.insurance.name" class="form-control">
+                <p ng-show="!userForm.name.$valid && (!userForm.name.$pristine || submitted)" class="help-block">You name is required.</p>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" >
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-4"></div>
+</div>
