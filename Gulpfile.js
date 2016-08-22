@@ -36,9 +36,14 @@ gulp.task('html', function(){
         .pipe(gulp.dest('./public/templates'));
 });
 
+gulp.task('watch', function() {
+  gulp.watch('./client/**/*.js', ['browserify-client']);
+  gulp.watch('./client/components/**/*.html', ['html']);
+});
+
 gulp.task('build', ['browserify-client', 'css', 'html']);
 
-
+gulp.task('default', ['build', 'watch']);
 
 
 

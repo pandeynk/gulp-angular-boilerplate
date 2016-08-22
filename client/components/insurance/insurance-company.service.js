@@ -2,8 +2,10 @@ InsuranceCompanyService=function(){
     var insuranceCompany={};
 
     insuranceCompany.list=[
-        {name:"ABC Company"},
-        {name:"XYZ Company"},
+        {name:"ABC Company", city:'Jaipur'},
+        {name:"XYZ Company", city:'Jaipur'},
+        {name:"EFG Company", city:'Delhi'},
+        {name:"MNO Company", city:'Delhi'}
     ];
 
     insuranceCompany.getList=function(){
