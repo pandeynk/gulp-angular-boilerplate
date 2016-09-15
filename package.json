@@ -29,6 +29,8 @@
     "gulp-uglify": "^1.5.4",
     "gulp-util": "^3.0.7",
     "jquery": "^3.1.0",
-    "jshint": "^2.9.2"
+    "jshint": "^2.9.2",
+    "lodash": "^4.15.0",
+    "restangular": "^1.5.2"
   }
 }
