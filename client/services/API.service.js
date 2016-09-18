@@ -1,10 +1,10 @@
-var APIService=function(Restangular, $window){
+var APIService=function(Restangular, $window, API_URL){
   var headers={
     'Content-Type': 'application/json'
   };
     return Restangular.withConfig(function (RestangularConfigurer) {
       RestangularConfigurer
-        .setBaseUrl('/api/')
+        .setBaseUrl(API_URL)
         .setDefaultHeaders(headers)
         .setErrorInterceptor(function (response) {
           if (response.status === 422) {

@@ -1,10 +1,11 @@
-var jQuery = window.$ = require('jquery');
 var angular = require('angular');
 //require('angular-ui-router');
 require('angular-ui-bootstrap');
 require('angular-ui-router');
 require('angular-recursion');
 require('restangular');
+require('dotenv');
+require('./app.constants');
 require('./app.configs');
 require('./app.run');
 require('./app.services');
@@ -13,15 +14,16 @@ require('./app.filters');
 require('./app.directives');
 
 
-angular.module('gulp-app', [
+angular.module('cadiq', [
         'ui.router',
         'ui.bootstrap',
         'RecursionHelper',
         'restangular',
-        'app.configs',
-        'app.run',
-        'app.filters',
-        'app.services',
-        'app.controllers',
-        'app.directives'
+        'cadiq.constants',
+        'cadiq.configs',
+        'cadiq.run',
+        'cadiq.filters',
+        'cadiq.services',
+        'cadiq.controllers',
+        'cadiq.directives'
     ]);

@@ -1,4 +1,4 @@
-var InsuranceCompanyAddController = function($scope, InsuranceCompanyService) {
+var InsuranceCompanyAddController = function($scope, InsuranceCompanyService, $auth, $rootScope) {
 
     $scope.insurances = {};
 
@@ -68,8 +68,12 @@ var InsuranceCompanyAddController = function($scope, InsuranceCompanyService) {
     $scope.insurances.edit = function(company, index) {
         InsuranceCompanyService.update(company, index);
     };
+
+    $scope.authenticateUser=function(){
+        $auth.login();
+    }
 };
 
-InsuranceCompanyAddController.$inject = ['$scope', 'InsuranceCompanyService'];
+InsuranceCompanyAddController.$inject = ['$scope', 'InsuranceCompanyService', '$auth', '$rootScope'];
 
 module.exports = InsuranceCompanyAddController;

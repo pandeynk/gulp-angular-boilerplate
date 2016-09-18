@@ -43,5 +43,13 @@
         <div class="col-md-4">
             <collection collection='tasks'></collection>
         </div>
+        <div class="col-md-4">
+            <button class="btn btn-primary form-control" ng-click="authenticateUser()">Login</button>
+        </div>
+    </div>
+
+
+    <div ng-if="isAuthenticated">
+        <span>Name : {{user.name}}</span>
     </div>
 </div>

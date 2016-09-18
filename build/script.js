@@ -1,16 +1,9 @@
-var RoutesRun=function($rootScope, $state, $timeout, API, ContextService, $auth){
-
-  $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-      if (!$auth.isLoggedIn() && toState.data.auth) {
-        event.preventDefault();
-        return $state.go('login');
-      }
-  });
-
-  var stateChange=function(){
-    $timeout(function () {
-
-      $(function() {
+/*!
+ * Start Bootstrap - SB Admin 2 v3.3.7+1 (http://startbootstrap.com/template-overviews/sb-admin-2)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+$(function() {
     $('#side-menu').metisMenu();
 });
 
@@ -52,26 +45,3 @@ $(function() {
         }
     }
 });
-      // get user current context
-      if ($auth.isLoggedIn()) {
-/*        ContextService.getContext()
-          .then(function(response) {
-            response = response.plain()
-            $rootScope.me = response.data
-          });*/
-          console.log('Before authenticating user from run file.');
-          $auth.authUser();
-      }else{
-        //event.preventDefault();
-          $auth.logout();
-      }
-    });
-  };
-
-  //$rootScope.$on('$destroy', deregisterationCallback);
-  $rootScope.$on('$stateChangeSuccess', stateChange);
-};
-
-RoutesRun.$inject=['$rootScope', '$state', '$timeout', 'API', 'ContextService', '$auth'];
-
-module.exports=RoutesRun;

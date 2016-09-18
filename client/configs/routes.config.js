@@ -2,40 +2,38 @@ var RoutesConfig=function($stateProvider, $urlRouterProvider){
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
-/*      .state('app', {
+      .state('cadiq', {
         abstract: true,
-        views: {
-          'layout': {
-            templateUrl: getLayout('layout')
-          },
-          'header@app': {
-            templateUrl: getView('header')
-          },
-          'footer@app': {
-            templateUrl: getView('footer')
-          },
-          main: {}
-        },
+        templateUrl: './templates/landing/landing.view.html',
         data: {
           bodyClass: 'hold-transition skin-blue sidebar-mini'
         }
-      })*/
-      .state('login', {
-        url: '/login',
-        templateUrl:'./templates/insurance/insurance-company-add/insurance-company-add.view.html',
+      })
+      .state('cadiq.dashboard', {
+        url: '/',
+        views:{
+          'header@cadiq': {
+            templateUrl: './templates/header/header.view.html'
+          },
+          'content@cadiq':{
+            templateUrl:'./templates/dashboard/dashboard.view.html'
+          },
+          'footer@cadiq': {}
+        },
         data: {
-          bodyClass: 'hold-transition login-page'
+          bodyClass: 'hold-transition'
         },
         params: {
           registerSuccess: null,
           successMsg: null
         }
       })
-      .state('app', {
-        url: '/',
-        template:'<h3 style="margin-top:200px;">Hello World</h3>',
+      .state('login', {
+        url: '/login',
+        templateUrl:'./templates/login/login.view.html',
+        controller:'LoginController',
         data: {
-          bodyClass: 'hold-transition'
+          bodyClass: 'hold-transition login-page'
         },
         params: {
           registerSuccess: null,
