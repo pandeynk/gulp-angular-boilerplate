@@ -1,0 +1,58 @@
+<div id="wrapper" >
+    <div id="page-wrapper">
+        <div class="panel panel-default" ng-init="init()" style="margin-top:20px;">
+            <div class="panel-heading">
+                <h4>ADD USER <!-- <span class="pull-right">
+                        <a class="btn btn-primary btn-sm" ui-sref="cadiq.users.add">Add User</a>
+                    </span> -->
+                </h4>
+            </div>
+            <div class="panel-body" ng-init="init();">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <form>
+                            <div class="form-group">
+                                <!-- <label>First Name</label> -->
+                                <input ng-model="user.firstName" type="text" name="" class="form-control" placeholder="First Name" required>
+                            </div>
+                            <div class="form-group">
+                                <!-- <label>Middle Name</label> -->
+                                <input ng-model="user.middleName" type="text" name="" class="form-control" placeholder="Middle Name">
+                            </div>
+                            <div class="form-group">
+                                <!-- <label>Last Name</label> -->
+                                <input ng-model="user.lastName" type="text" name="" class="form-control" placeholder="Last Name">
+                            </div>
+                            <div class="form-group">
+                                <!-- <label>Email</label> -->
+                                <input ng-model="user.email" type="text" name="" class="form-control" placeholder="Email" readonly required>
+                            </div>
+                            <div class="form-group">
+                                <!-- <label>Email</label> -->
+                                <input ng-model="user.username" type="text" name="" class="form-control" placeholder="Username" readonly required>
+                            </div>
+                            <div class="form-group">
+                                <!-- <label>Password</label> -->
+                                <input ng-model="user.password" type="text" name="" class="form-control" placeholder="Password" required>
+                            </div>
+                            <div class="form-group">
+                                <!-- <label>Password</label> -->
+                                <select ng-model="user.role" name="" class="form-control" placeholder="Password" required>
+                                    <option selected disabled>Select Role</option>
+                                    <option value="USER">User</option>
+                                    <option value="ADMIN">Admin</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-info" ng-click="cancelAdd()">Cancel</button>
+                                <button class="btn btn-primary" ng-click="addUser(user)">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

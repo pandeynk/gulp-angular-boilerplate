@@ -1,0 +1,40 @@
+<div id="wrapper" >
+    <div id="page-wrapper">
+        <div class="panel panel-default" ng-init="init()" style="margin-top:20px;">
+            <div class="panel-heading">
+                <h3>Users <span class="pull-right">
+                        <a class="btn btn-primary btn-sm" ui-sref="cadiq.users.add">Add User</a>
+                    </span>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-responsive table-condensed table-hover table-bordered">
+                    <tr>
+                        <th>S.No.</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr ng-repeat="user in users">
+                        <td>{{$index+1}}</td>
+                        <td>{{user.firstName}}</td>
+                        <td>{{user.lastName}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.role}}</td>
+                        <td>
+                            <div class="dropdown">
+                              <button class="btn btn-primary btn-xs dropdown-toggle" type="button" data-toggle="dropdown">Action
+                              <span class="caret"></span></button>
+                              <ul class="dropdown-menu">
+                                <li><a ui-sref="cadiq.users.edit({userId:user.id})">Edit</a></li>
+                              </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

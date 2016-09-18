@@ -7,24 +7,30 @@ var RoutesConfig=require('./configs/routes.config');
 module.exports=angular.module('cadiq.configs', [])
   .config(RoutesConfig);
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app.configs.js","/")
-},{"./configs/routes.config":11,"angular":27,"buffer":30,"qC859L":33}],2:[function(require,module,exports){
+},{"./configs/routes.config":14,"angular":30,"buffer":33,"qC859L":36}],2:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 angular.module("cadiq.constants", [])
 .constant("API_URL", "http://localhost:8085");
 
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app.constants.js","/")
-},{"buffer":30,"qC859L":33}],3:[function(require,module,exports){
+},{"buffer":33,"qC859L":36}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var angular=require('angular');
 
-var InsuranceCompanyAddController=require('./components/insurance/insurance-company-add/insurance-company-add.controller');
 var LoginController=require('./components/login/login.controller');
+var HeaderController=require('./components/header/header.controller');
+var UserListController=require('./components/user/user-list/user-list.controller');
+var UserAddController=require('./components/user/user-add/user-add.controller');
+var UserEditController=require('./components/user/user-edit/user-edit.controller');
 
 module.exports=angular.module('cadiq.controllers', [])
     .controller('LoginController', LoginController)
-    .controller('InsuranceCompanyAddController', InsuranceCompanyAddController);
+    .controller('UserListController', UserListController)
+    .controller('UserAddController', UserAddController)
+    .controller('UserEditController', UserEditController)
+    .controller('HeaderController', HeaderController);
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app.controllers.js","/")
-},{"./components/insurance/insurance-company-add/insurance-company-add.controller":8,"./components/login/login.controller":10,"angular":27,"buffer":30,"qC859L":33}],4:[function(require,module,exports){
+},{"./components/header/header.controller":8,"./components/login/login.controller":9,"./components/user/user-add/user-add.controller":10,"./components/user/user-edit/user-edit.controller":11,"./components/user/user-list/user-list.controller":12,"angular":30,"buffer":33,"qC859L":36}],4:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var angular = require('angular');
 var RecursionDirective = require('./directives/recursion/recursion.directive');
@@ -37,7 +43,7 @@ module.exports = angular.module('cadiq.directives', [])
     .directive('member', MemberDirective);
 
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app.directives.js","/")
-},{"./directives/menu/collection.directive":12,"./directives/menu/member.directive":13,"./directives/recursion/recursion.directive":14,"angular":27,"buffer":30,"qC859L":33}],5:[function(require,module,exports){
+},{"./directives/menu/collection.directive":15,"./directives/menu/member.directive":16,"./directives/recursion/recursion.directive":17,"angular":30,"buffer":33,"qC859L":36}],5:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var angular = require('angular');
 
@@ -49,7 +55,7 @@ module.exports = angular.module('cadiq.filters', [])
     .filter('cname', CompanyFilter);
 
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app.filters.js","/")
-},{"./filters/city.filter":16,"./filters/company.filter":17,"angular":27,"buffer":30,"qC859L":33}],6:[function(require,module,exports){
+},{"./filters/city.filter":19,"./filters/company.filter":20,"angular":30,"buffer":33,"qC859L":36}],6:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var angular=require('angular');
 
@@ -58,150 +64,201 @@ var RouteRun=require('./run/routes.run');
 module.exports=angular.module('cadiq.run', [])
                 .run(RouteRun);
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app.run.js","/")
-},{"./run/routes.run":18,"angular":27,"buffer":30,"qC859L":33}],7:[function(require,module,exports){
+},{"./run/routes.run":21,"angular":30,"buffer":33,"qC859L":36}],7:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var angular=require('angular');
 
 var APIService=require('./services/API.service');
 var AuthenticationService=require('./services/auth.service');
 var ContextService=require('./services/context.service');
-var InsuranceCompanyService=require('./components/insurance/insurance-company.service');
+var UserService=require('./components/user/user.service');
 
 module.exports=angular.module('cadiq.services', [])
     .factory('API', APIService)
     .factory('$auth', AuthenticationService)
     .factory('ContextService', ContextService)
-    .factory('InsuranceCompanyService', InsuranceCompanyService);
+    .factory('UserService', UserService);
 
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/app.services.js","/")
-},{"./components/insurance/insurance-company.service":9,"./services/API.service":19,"./services/auth.service":20,"./services/context.service":21,"angular":27,"buffer":30,"qC859L":33}],8:[function(require,module,exports){
+},{"./components/user/user.service":13,"./services/API.service":22,"./services/auth.service":23,"./services/context.service":24,"angular":30,"buffer":33,"qC859L":36}],8:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
-var InsuranceCompanyAddController = function($scope, InsuranceCompanyService, $auth, $rootScope) {
+var HeaderController=function($rootScope, $scope){
+    console.log($rootScope.user.firstName);
 
-    $scope.insurances = {};
-
-    $scope.insurances.insurance = {};
-
-    $scope.treeFamily = {
-        name: "Parent",
-        children: [{
-            name: "Child1",
-            children: [{
-                name: "Grandchild1",
-                children: [{
-                    name: "Grand2Child",
-                    children: []
-                }]
-            }, {
-                name: "Grandchild2",
-                children: []
-            }, {
-                name: "Grandchild3",
-                children: []
-            }]
-        }, {
-            name: "Child2",
-            children: []
-        }]
-    };
-
-    $scope.tasks = [{
-        name: 'Europe',
-        children: [{
-            name: 'Italy',
-            children: [{
-                name: 'Rome'
-            }, {
-                name: 'Milan'
-            }]
-        }, {
-            name: 'Spain'
-        }]
-    }, {
-        name: 'South America',
-        children: [{
-            name: 'Brasil'
-        }, {
-            name: 'Peru'
-        }]
-    }];
-
-    $scope.init = function() {
-        $scope.insurances.list = InsuranceCompanyService.getList();
-        console.log($scope.insurances.list);
-    };
-
-    $scope.insurances.add = function(isValid) {
-        $scope.submitted = true;
-        if (isValid) {
-            var temp = {};
-            temp = angular.copy($scope.insurances.insurance);
-            InsuranceCompanyService.add(temp);
-            $scope.init();
-        } else {
-            console.log("nahi chalunga");
-        }
-    };
-
-    $scope.insurances.edit = function(company, index) {
-        InsuranceCompanyService.update(company, index);
-    };
-
-    $scope.authenticateUser=function(){
-        $auth.login();
+    $scope.init=function(){
+        console.log('Hello World');
+        console.log($rootScope.user);
     }
 };
 
-InsuranceCompanyAddController.$inject = ['$scope', 'InsuranceCompanyService', '$auth', '$rootScope'];
-
-module.exports = InsuranceCompanyAddController;
-
-}).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\insurance\\insurance-company-add\\insurance-company-add.controller.js","/components\\insurance\\insurance-company-add")
-},{"buffer":30,"qC859L":33}],9:[function(require,module,exports){
-(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
-InsuranceCompanyService=function(){
-    var insuranceCompany={};
-
-    insuranceCompany.list=[
-        {name:"ABC Company", city:'Jaipur'},
-        {name:"XYZ Company", city:'Jaipur'},
-        {name:"EFG Company", city:'Delhi'},
-        {name:"MNO Company", city:'Delhi'}
-    ];
-
-    insuranceCompany.getList=function(){
-        return this.list;
-    };
-
-    insuranceCompany.add=function(company){
-        this.list.push(company);
-    };
-
-    insuranceCompany.update=function(company, index){
-        insuranceCompany[index]=company;
-    };
-
-    return insuranceCompany;
-};
-
-InsuranceCompanyService.$inject=[];
-
-module.exports=InsuranceCompanyService;
-}).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\insurance\\insurance-company.service.js","/components\\insurance")
-},{"buffer":30,"qC859L":33}],10:[function(require,module,exports){
+HeaderController.$inject=['$rootScope', '$scope'];
+module.exports=HeaderController;
+}).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\header\\header.controller.js","/components\\header")
+},{"buffer":33,"qC859L":36}],9:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var LoginController=function($scope, $rootScope, $auth, $location, $state){
 
+    $scope.username='';
+    $scope.password='';
+
     $scope.login=function(){
-        $auth.login();
-        $state.go('cadiq.dashboard');
+        if($scope.username!=='' && $scope.password!==''){
+            $auth.login($scope.username, $scope.password).then(function(){
+                $state.go('cadiq.dashboard');
+            }, function(){
+                console.log('Login Failed');
+            });
+        }
     };
 };
 
 LoginController.$inject=['$scope', '$rootScope', '$auth', '$location', '$state'];
 module.exports=LoginController;
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\login\\login.controller.js","/components\\login")
-},{"buffer":30,"qC859L":33}],11:[function(require,module,exports){
+},{"buffer":33,"qC859L":36}],10:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+var UserAddController=function($rootScope, $scope, UserService, $state){
+    $scope.init=function(){
+        $scope.user={};
+    };
+
+    $scope.cancelAdd=function(){
+        $scope.init();
+        $state.go('cadiq.users');
+    };
+
+    $scope.addUser=function(user){
+        UserService.add(user).then(function(response){
+            console.log('User Added Successfully!');
+            $state.go('cadiq.users');
+        }, function(error){
+            console.log('Something wrong hapenned!');
+        });
+    };
+};
+
+UserAddController.$inject=['$rootScope', '$scope', 'UserService', '$state'];
+module.exports=UserAddController;
+}).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\user\\user-add\\user-add.controller.js","/components\\user\\user-add")
+},{"buffer":33,"qC859L":36}],11:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+var UserEditController=function($rootScope, $scope, UserService, $state, $stateParams){
+    $scope.init=function(){
+        $scope.user={};
+
+        UserService.one($stateParams.userId).then(function(user){
+            $scope.user=user;
+        }, function(error){
+            console.log('Something wrong hapenned!');
+        });
+    };
+
+    $scope.cancelEdit=function(){
+        $state.go('cadiq.users');
+    };
+
+    $scope.editUser=function(user){
+        UserService.update(user).then(function(response){
+            console.log('User Updated Successfully!');
+            $state.go('cadiq.users');
+        }, function(error){
+            console.log('Something wrong hapenned!');
+        });
+    };
+};
+
+UserEditController.$inject=['$rootScope', '$scope', 'UserService', '$state', '$stateParams'];
+module.exports=UserEditController;
+}).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\user\\user-edit\\user-edit.controller.js","/components\\user\\user-edit")
+},{"buffer":33,"qC859L":36}],12:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+var UserListController=function($scope, $rootScope, UserService){
+
+    $scope.init=function(){
+        $scope.users=[];
+
+        UserService.list().then(function(users){
+            $scope.users=users;
+        }, function(error){
+            console.log('Couldnt fetch users data');
+        });
+    };
+};
+
+UserListController.$inject=['$scope', '$rootScope', 'UserService'];
+module.exports=UserListController;
+}).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\user\\user-list\\user-list.controller.js","/components\\user\\user-list")
+},{"buffer":33,"qC859L":36}],13:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+var UserService=function(API, $http, $auth, $rootScope, $q, API_URL, $window){
+    var users={};
+
+    users.one=function(userId){
+        var deferred=$q.defer();
+        API.one('user',userId).get().then(function(user){
+            deferred.resolve(user);
+        }, function(error){
+            deferred.reject(error);
+        });
+        return deferred.promise;
+    };
+
+    users.add=function(data){
+        var deferred=$q.defer();
+        API.all('user').post(data).then(function(response){
+            deferred.resolve(response);
+        }, function(error){
+            deferred.reject(error);
+        });
+        return deferred.promise;
+    };
+
+    users.update=function(data){
+        var deferred=$q.defer();
+        $http({
+            method:'PUT',
+            url:API_URL+'/user',
+            headers:{
+                    'Authorization':'Basic '+$window.sessionStorage.token,
+                    'Content-Type': 'application/json'
+                },
+                data:data
+        }).then(function(response){
+            console.log(response);
+            deferred.resolve(response);
+        }, function(error){
+            deferred.reject(error);
+        });
+        //data.put();
+        /*API.all('user').post(data).then(function(response){
+            console.log(response);
+            deferred.resolve(response);
+        }, function(error){
+            deferred.reject(error);
+        });*/
+        return deferred.promise;
+    };
+
+    users.list=function(){
+        var deferred=$q.defer();
+
+        API.all('user').getList().then(function(users){
+            deferred.resolve(users);
+        }, function(error){
+            deferred.reject(error);
+        });
+
+        return deferred.promise;
+    };
+
+    return users;
+};
+
+UserService.$inject=['API', '$http', '$auth', '$rootScope', '$q', 'API_URL', '$window'];
+
+module.exports=UserService;
+}).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\user\\user.service.js","/components\\user")
+},{"buffer":33,"qC859L":36}],14:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var RoutesConfig=function($stateProvider, $urlRouterProvider){
     $urlRouterProvider.otherwise('/');
@@ -233,6 +290,69 @@ var RoutesConfig=function($stateProvider, $urlRouterProvider){
           successMsg: null
         }
       })
+      .state('cadiq.users', {
+        url: '/users',
+        views:{
+          'header@cadiq': {
+            templateUrl: './templates/header/header.view.html'
+          },
+          'content@cadiq':{
+            templateUrl:'./templates/user/user-list/user-list.view.html',
+            controller:'UserListController'
+          },
+          'footer@cadiq': {}
+        },
+        data: {
+          bodyClass: 'hold-transition',
+          auth:true
+        },
+        params: {
+          registerSuccess: null,
+          successMsg: null
+        }
+      })
+      .state('cadiq.users.add', {
+        url: '/add',
+        views:{
+          'header@cadiq': {
+            templateUrl: './templates/header/header.view.html'
+          },
+          'content@cadiq':{
+            templateUrl:'./templates/user/user-add/user-add.view.html',
+            controller:'UserAddController'
+          },
+          'footer@cadiq': {}
+        },
+        data: {
+          bodyClass: 'hold-transition',
+          auth:true
+        },
+        params: {
+          registerSuccess: null,
+          successMsg: null
+        }
+      })
+      .state('cadiq.users.edit', {
+        url: '/edit/:userId',
+        views:{
+          'header@cadiq': {
+            templateUrl: './templates/header/header.view.html'
+          },
+          'content@cadiq':{
+            templateUrl:'./templates/user/user-edit/user-edit.view.html',
+            controller:'UserEditController'
+          },
+          'footer@cadiq': {}
+        },
+        data: {
+          bodyClass: 'hold-transition',
+          auth:true
+        },
+        params: {
+          registerSuccess: null,
+          successMsg: null
+        }
+      })
       .state('login', {
         url: '/login',
         templateUrl:'./templates/login/login.view.html',
@@ -244,29 +364,20 @@ var RoutesConfig=function($stateProvider, $urlRouterProvider){
           registerSuccess: null,
           successMsg: null
         }
-      });
-/*      .state('app.logout', {
-      url: '/logout',
-      views: {
-        'main@app': {
-          controller: function ($rootScope, $scope, $auth, $state, AclService) {
-            $auth.logout().then(function () {
-              delete $rootScope.me
-              AclService.flushRoles()
-              AclService.setAbilities({})
-              $state.go('login')
-            })
-          }
+      })
+      .state('logout', {
+        url: '/logout',
+        controller: function ($scope, $auth) {
+          $auth.logout();
         }
-      }
-    });*/
+    });
 };
 
 RoutesConfig.$inject=['$stateProvider', '$urlRouterProvider'];
 
 module.exports=RoutesConfig;
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/configs\\routes.config.js","/configs")
-},{"buffer":30,"qC859L":33}],12:[function(require,module,exports){
+},{"buffer":33,"qC859L":36}],15:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var CollectionDirective = function() {
     return {
@@ -282,7 +393,7 @@ var CollectionDirective = function() {
 module.exports = CollectionDirective;
 
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/directives\\menu\\collection.directive.js","/directives\\menu")
-},{"buffer":30,"qC859L":33}],13:[function(require,module,exports){
+},{"buffer":33,"qC859L":36}],16:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var MemberDirective = function($compile) {
     return {
@@ -304,7 +415,7 @@ var MemberDirective = function($compile) {
 module.exports = MemberDirective;
 
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/directives\\menu\\member.directive.js","/directives\\menu")
-},{"buffer":30,"qC859L":33}],14:[function(require,module,exports){
+},{"buffer":33,"qC859L":36}],17:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var RecursionDirective = function(RecursionHelper) {
     return {
@@ -332,7 +443,7 @@ var RecursionDirective = function(RecursionHelper) {
 module.exports = RecursionDirective;
 
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/directives\\recursion\\recursion.directive.js","/directives\\recursion")
-},{"buffer":30,"qC859L":33}],15:[function(require,module,exports){
+},{"buffer":33,"qC859L":36}],18:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var angular = require('angular');
 //require('angular-ui-router');
@@ -364,8 +475,8 @@ angular.module('cadiq', [
         'cadiq.directives'
     ]);
 
-}).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_4f81a3c2.js","/")
-},{"./app.configs":1,"./app.constants":2,"./app.controllers":3,"./app.directives":4,"./app.filters":5,"./app.run":6,"./app.services":7,"angular":27,"angular-recursion":22,"angular-ui-bootstrap":24,"angular-ui-router":25,"buffer":30,"dotenv":31,"qC859L":33,"restangular":34}],16:[function(require,module,exports){
+}).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_a2f3e8d3.js","/")
+},{"./app.configs":1,"./app.constants":2,"./app.controllers":3,"./app.directives":4,"./app.filters":5,"./app.run":6,"./app.services":7,"angular":30,"angular-recursion":25,"angular-ui-bootstrap":27,"angular-ui-router":28,"buffer":33,"dotenv":34,"qC859L":36,"restangular":37}],19:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var CityFilter=function(){
     return function(items, city){
@@ -382,7 +493,7 @@ var CityFilter=function(){
 
 module.exports=CityFilter;
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/filters\\city.filter.js","/filters")
-},{"buffer":30,"qC859L":33}],17:[function(require,module,exports){
+},{"buffer":33,"qC859L":36}],20:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var CompanyFilter=function(){
     return function(items, city){
@@ -399,7 +510,7 @@ var CompanyFilter=function(){
 
 module.exports=CompanyFilter;
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/filters\\company.filter.js","/filters")
-},{"buffer":30,"qC859L":33}],18:[function(require,module,exports){
+},{"buffer":33,"qC859L":36}],21:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var RoutesRun=function($rootScope, $state, $timeout, API, ContextService, $auth){
 
@@ -407,6 +518,8 @@ var RoutesRun=function($rootScope, $state, $timeout, API, ContextService, $auth)
       if (!$auth.isLoggedIn() && toState.data.auth) {
         event.preventDefault();
         return $state.go('login');
+      }else if($auth.isLoggedIn() && toState.name==='login'){
+        return $state.go('cadiq.dashboard');
       }
   });
 
@@ -414,47 +527,47 @@ var RoutesRun=function($rootScope, $state, $timeout, API, ContextService, $auth)
     $timeout(function () {
 
       $(function() {
-    $('#side-menu').metisMenu();
-});
+          $('#side-menu').metisMenu();
+      });
 
-//Loads the correct sidebar on window load,
-//collapses the sidebar on window resize.
-// Sets the min-height of #page-wrapper to window size
-$(function() {
-    $(window).bind("load resize", function() {
-        var topOffset = 50;
-        var width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
-        if (width < 768) {
-            $('div.navbar-collapse').addClass('collapse');
-            topOffset = 100; // 2-row-menu
-        } else {
-            $('div.navbar-collapse').removeClass('collapse');
-        }
+      //Loads the correct sidebar on window load,
+      //collapses the sidebar on window resize.
+      // Sets the min-height of #page-wrapper to window size
+      $(function() {
+          $(window).bind("load resize", function() {
+              var topOffset = 50;
+              var width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
+              if (width < 768) {
+                  $('div.navbar-collapse').addClass('collapse');
+                  topOffset = 100; // 2-row-menu
+              } else {
+                  $('div.navbar-collapse').removeClass('collapse');
+              }
 
-        var height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
-        height = height - topOffset;
-        if (height < 1) height = 1;
-        if (height > topOffset) {
-            $("#page-wrapper").css("min-height", (height) + "px");
-        }
-    });
+              var height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
+              height = height - topOffset;
+              if (height < 1) height = 1;
+              if (height > topOffset) {
+                  $("#page-wrapper").css("min-height", (height) + "px");
+              }
+          });
 
-    var url = window.location;
-    // var element = $('ul.nav a').filter(function() {
-    //     return this.href == url;
-    // }).addClass('active').parent().parent().addClass('in').parent();
-    var element = $('ul.nav a').filter(function() {
-        return this.href == url;
-    }).addClass('active').parent();
+          var url = window.location;
+          // var element = $('ul.nav a').filter(function() {
+          //     return this.href == url;
+          // }).addClass('active').parent().parent().addClass('in').parent();
+          var element = $('ul.nav a').filter(function() {
+              return this.href == url;
+          }).addClass('active').parent();
 
-    while (true) {
-        if (element.is('li')) {
-            element = element.parent().addClass('in').parent();
-        } else {
-            break;
-        }
-    }
-});
+          while (true) {
+              if (element.is('li')) {
+                  element = element.parent().addClass('in').parent();
+              } else {
+                  break;
+              }
+          }
+      });
       // get user current context
       if ($auth.isLoggedIn()) {
 /*        ContextService.getContext()
@@ -462,7 +575,6 @@ $(function() {
             response = response.plain()
             $rootScope.me = response.data
           });*/
-          console.log('Before authenticating user from run file.');
           $auth.authUser();
       }else{
         //event.preventDefault();
@@ -479,7 +591,7 @@ RoutesRun.$inject=['$rootScope', '$state', '$timeout', 'API', 'ContextService', 
 
 module.exports=RoutesRun;
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/run\\routes.run.js","/run")
-},{"buffer":30,"qC859L":33}],19:[function(require,module,exports){
+},{"buffer":33,"qC859L":36}],22:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var APIService=function(Restangular, $window, API_URL){
   var headers={
@@ -497,44 +609,60 @@ var APIService=function(Restangular, $window, API_URL){
           }
         })
         .addFullRequestInterceptor(function (element, operation, what, url, headers) {
-          var token = $window.localStorage.satellizer_token;
+          var token = $window.sessionStorage.token;
           if (token) {
-            headers.Authorization = 'Bearer ' + token;
+            headers.Authorization = 'Basic ' + token;
           }
         })
         .addResponseInterceptor(function (response, operation, what) {
-          if (operation === 'getList') {
+          /*if (operation === 'getList') {
             var newResponse = response.data[what];
             newResponse.error = response.error;
             return newResponse;
-          }
+          }*/
 
           return response;
         });
     });
 };
 
-APIService.$inject=['Restangular', '$window'];
+APIService.$inject=['Restangular', '$window', 'API_URL'];
 
 module.exports=APIService;
 
 
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/services\\API.service.js","/services")
-},{"buffer":30,"qC859L":33}],20:[function(require,module,exports){
+},{"buffer":33,"qC859L":36}],23:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
-var AuthenticationService=function($http, $q, $window, $rootScope, $state){
+var AuthenticationService=function($http, $q, $window, $rootScope, $state, API_URL){
     var auth={};
 
-    auth.login=function(){
+    auth.login=function(username, password){
+        var deferred=$q.defer();
+
         if(this.isLoggedIn()){
             this.authUser();
         }else{
-            $window.sessionStorage.token="authtoken";
-            $window.sessionStorage.user=JSON.stringify({name:'nandan pandey', id:1});
-            this.authUser();
+            var token=btoa(username+':'+password);
+            $http({
+                method:'GET',
+                url:API_URL+"/login",
+                headers:{
+                    'Authorization':'Basic '+token,
+                    'Content-Type': 'application/json'
+                }
+            }).then(function(response){
+                $window.sessionStorage.token=token;
+                $window.sessionStorage.user=JSON.stringify(response);
+                auth.authUser();
+                deferred.resolve();
+            }, function(error){
+                deferred.reject();
+            });
         }
-        return true;
-    }
+
+        return deferred.promise;
+    };
 
     auth.logout=function(){
         delete $window.sessionStorage.token;
@@ -543,7 +671,7 @@ var AuthenticationService=function($http, $q, $window, $rootScope, $state){
         delete $rootScope.user;
         $rootScope.isAuthenticated=false;
         return $state.go('login');
-    }
+    };
 
     auth.isLoggedIn=function(){
         if((typeof $window.sessionStorage.token!=='undefined') && ($window.sessionStorage.token!=='')){
@@ -551,22 +679,22 @@ var AuthenticationService=function($http, $q, $window, $rootScope, $state){
         }else{
             return false;
         }
-    }
+    };
 
     auth.authUser=function(){
         $rootScope.token=$window.sessionStorage.token;
         $rootScope.user=JSON.parse($window.sessionStorage.user);
         $rootScope.isAuthenticated=true;
-    }
+    };
 
     return auth;
-}
+};
 
-AuthenticationService.$inject=['$http', '$q', '$window', '$rootScope', '$state'];
+AuthenticationService.$inject=['$http', '$q', '$window', '$rootScope', '$state', 'API_URL'];
 
 module.exports=AuthenticationService;
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/services\\auth.service.js","/services")
-},{"buffer":30,"qC859L":33}],21:[function(require,module,exports){
+},{"buffer":33,"qC859L":36}],24:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var ContextService=function($rootScope, API){
 
@@ -597,7 +725,7 @@ ContextService.$inject=['$rootScope', 'API'];
 module.exports=ContextService;
 
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/services\\context.service.js","/services")
-},{"buffer":30,"qC859L":33}],22:[function(require,module,exports){
+},{"buffer":33,"qC859L":36}],25:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /* 
  * An Angular service which helps with creating recursive directives.
@@ -646,7 +774,7 @@ angular.module('RecursionHelper', []).factory('RecursionHelper', ['$compile', fu
 	};
 }]);
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\node_modules\\angular-recursion\\angular-recursion.js","/..\\node_modules\\angular-recursion")
-},{"buffer":30,"qC859L":33}],23:[function(require,module,exports){
+},{"buffer":33,"qC859L":36}],26:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /*
  * angular-ui-bootstrap
@@ -8185,14 +8313,14 @@ angular.module('ui.bootstrap.tooltip').run(function() {!angular.$$csp().noInline
 angular.module('ui.bootstrap.timepicker').run(function() {!angular.$$csp().noInlineStyle && !angular.$$uibTimepickerCss && angular.element(document).find('head').prepend('<style type="text/css">.uib-time input{width:50px;}</style>'); angular.$$uibTimepickerCss = true; });
 angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInlineStyle && !angular.$$uibTypeaheadCss && angular.element(document).find('head').prepend('<style type="text/css">[uib-typeahead-popup].dropdown-menu{display:block;}</style>'); angular.$$uibTypeaheadCss = true; });
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\node_modules\\angular-ui-bootstrap\\dist\\ui-bootstrap-tpls.js","/..\\node_modules\\angular-ui-bootstrap\\dist")
-},{"buffer":30,"qC859L":33}],24:[function(require,module,exports){
+},{"buffer":33,"qC859L":36}],27:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 require('./dist/ui-bootstrap-tpls');
 
 module.exports = 'ui.bootstrap';
 
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\node_modules\\angular-ui-bootstrap\\index.js","/..\\node_modules\\angular-ui-bootstrap")
-},{"./dist/ui-bootstrap-tpls":23,"buffer":30,"qC859L":33}],25:[function(require,module,exports){
+},{"./dist/ui-bootstrap-tpls":26,"buffer":33,"qC859L":36}],28:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /**
  * State-based routing for AngularJS
@@ -12771,7 +12899,7 @@ angular.module('ui.router.state')
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\node_modules\\angular-ui-router\\release\\angular-ui-router.js","/..\\node_modules\\angular-ui-router\\release")
-},{"buffer":30,"qC859L":33}],26:[function(require,module,exports){
+},{"buffer":33,"qC859L":36}],29:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /**
  * @license AngularJS v1.5.8
@@ -44542,13 +44670,13 @@ $provide.value("$locale", {
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\node_modules\\angular\\angular.js","/..\\node_modules\\angular")
-},{"buffer":30,"qC859L":33}],27:[function(require,module,exports){
+},{"buffer":33,"qC859L":36}],30:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 require('./angular');
 module.exports = angular;
 
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\node_modules\\angular\\index.js","/..\\node_modules\\angular")
-},{"./angular":26,"buffer":30,"qC859L":33}],28:[function(require,module,exports){
+},{"./angular":29,"buffer":33,"qC859L":36}],31:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
@@ -44676,9 +44804,9 @@ var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 }(typeof exports === 'undefined' ? (this.base64js = {}) : exports))
 
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\node_modules\\base64-js\\lib\\b64.js","/..\\node_modules\\base64-js\\lib")
-},{"buffer":30,"qC859L":33}],29:[function(require,module,exports){
+},{"buffer":33,"qC859L":36}],32:[function(require,module,exports){
 
-},{"buffer":30,"qC859L":33}],30:[function(require,module,exports){
+},{"buffer":33,"qC859L":36}],33:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /*!
  * The buffer module from node.js, for the browser.
@@ -45791,7 +45919,7 @@ function assert (test, message) {
 }
 
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\node_modules\\buffer\\index.js","/..\\node_modules\\buffer")
-},{"base64-js":28,"buffer":30,"ieee754":32,"qC859L":33}],31:[function(require,module,exports){
+},{"base64-js":31,"buffer":33,"ieee754":35,"qC859L":36}],34:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 'use strict'
 
@@ -45877,7 +46005,7 @@ module.exports = {
 module.exports.load = module.exports.config
 
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\node_modules\\dotenv\\lib\\main.js","/..\\node_modules\\dotenv\\lib")
-},{"buffer":30,"fs":29,"qC859L":33}],32:[function(require,module,exports){
+},{"buffer":33,"fs":32,"qC859L":36}],35:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -45965,7 +46093,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 }
 
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\node_modules\\ieee754\\index.js","/..\\node_modules\\ieee754")
-},{"buffer":30,"qC859L":33}],33:[function(require,module,exports){
+},{"buffer":33,"qC859L":36}],36:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 // shim for using process in browser
 
@@ -46032,7 +46160,7 @@ process.chdir = function (dir) {
 };
 
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\node_modules\\process\\browser.js","/..\\node_modules\\process")
-},{"buffer":30,"qC859L":33}],34:[function(require,module,exports){
+},{"buffer":33,"qC859L":36}],37:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /**
  * Restful Resources service for AngularJS apps
@@ -46041,4 +46169,4 @@ process.chdir = function (dir) {
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */!function(){var a=angular.module("restangular",[]);a.provider("Restangular",function(){var a={};a.init=function(a,b){function c(a,b,c,d){var e={};return _.each(_.keys(d),function(f){var g=d[f];g.params=_.extend({},g.params,a.defaultRequestParams[g.method.toLowerCase()]),_.isEmpty(g.params)&&delete g.params,a.isSafe(g.method)?e[f]=function(){return b(_.extend(g,{url:c}))}:e[f]=function(a){return b(_.extend(g,{url:c,data:a}))}}),e}a.configuration=b;var d=["get","head","options","trace","getlist"];b.isSafe=function(a){return _.includes(d,a.toLowerCase())};var e=/^https?:\/\//i;b.isAbsoluteUrl=function(a){return _.isUndefined(b.absoluteUrl)||_.isNull(b.absoluteUrl)?a&&e.test(a):b.absoluteUrl},b.absoluteUrl=_.isUndefined(b.absoluteUrl)?!0:b.absoluteUrl,a.setSelfLinkAbsoluteUrl=function(a){b.absoluteUrl=a},b.baseUrl=_.isUndefined(b.baseUrl)?"":b.baseUrl,a.setBaseUrl=function(a){return b.baseUrl=/\/$/.test(a)?a.substring(0,a.length-1):a,this},b.extraFields=b.extraFields||[],a.setExtraFields=function(a){return b.extraFields=a,this},b.defaultHttpFields=b.defaultHttpFields||{},a.setDefaultHttpFields=function(a){return b.defaultHttpFields=a,this},b.withHttpValues=function(a,c){return _.defaults(c,a,b.defaultHttpFields)},b.encodeIds=_.isUndefined(b.encodeIds)?!0:b.encodeIds,a.setEncodeIds=function(a){b.encodeIds=a},b.defaultRequestParams=b.defaultRequestParams||{get:{},post:{},put:{},remove:{},common:{}},a.setDefaultRequestParams=function(a,c){var d=[],e=c||a;return _.isUndefined(c)?d.push("common"):_.isArray(a)?d=a:d.push(a),_.each(d,function(a){b.defaultRequestParams[a]=e}),this},a.requestParams=b.defaultRequestParams,b.defaultHeaders=b.defaultHeaders||{},a.setDefaultHeaders=function(c){return b.defaultHeaders=c,a.defaultHeaders=b.defaultHeaders,this},a.defaultHeaders=b.defaultHeaders,b.methodOverriders=b.methodOverriders||[],a.setMethodOverriders=function(a){var c=_.extend([],a);return b.isOverridenMethod("delete",c)&&c.push("remove"),b.methodOverriders=c,this},b.jsonp=_.isUndefined(b.jsonp)?!1:b.jsonp,a.setJsonp=function(a){b.jsonp=a},b.isOverridenMethod=function(a,c){var d=c||b.methodOverriders;return!_.isUndefined(_.find(d,function(b){return b.toLowerCase()===a.toLowerCase()}))},b.urlCreator=b.urlCreator||"path",a.setUrlCreator=function(a){if(!_.has(b.urlCreatorFactory,a))throw new Error("URL Path selected isn't valid");return b.urlCreator=a,this},b.restangularFields=b.restangularFields||{id:"id",route:"route",parentResource:"parentResource",restangularCollection:"restangularCollection",cannonicalId:"__cannonicalId",etag:"restangularEtag",selfLink:"href",get:"get",getList:"getList",put:"put",post:"post",remove:"remove",head:"head",trace:"trace",options:"options",patch:"patch",getRestangularUrl:"getRestangularUrl",getRequestedUrl:"getRequestedUrl",putElement:"putElement",addRestangularMethod:"addRestangularMethod",getParentList:"getParentList",clone:"clone",ids:"ids",httpConfig:"_$httpConfig",reqParams:"reqParams",one:"one",all:"all",several:"several",oneUrl:"oneUrl",allUrl:"allUrl",customPUT:"customPUT",customPOST:"customPOST",customDELETE:"customDELETE",customGET:"customGET",customGETLIST:"customGETLIST",customOperation:"customOperation",doPUT:"doPUT",doPOST:"doPOST",doDELETE:"doDELETE",doGET:"doGET",doGETLIST:"doGETLIST",fromServer:"fromServer",withConfig:"withConfig",withHttpConfig:"withHttpConfig",singleOne:"singleOne",plain:"plain",save:"save",restangularized:"restangularized"},a.setRestangularFields=function(a){return b.restangularFields=_.extend(b.restangularFields,a),this},b.isRestangularized=function(a){return!!a[b.restangularFields.restangularized]},b.setFieldToElem=function(a,b,c){var d=a.split("."),e=b;return _.each(_.initial(d),function(a){e[a]={},e=e[a]}),e[_.last(d)]=c,this},b.getFieldFromElem=function(a,b){var c=a.split("."),d=b;return _.each(c,function(a){d&&(d=d[a])}),angular.copy(d)},b.setIdToElem=function(a,c){return b.setFieldToElem(b.restangularFields.id,a,c),this},b.getIdFromElem=function(a){return b.getFieldFromElem(b.restangularFields.id,a)},b.isValidId=function(a){return""!==a&&!_.isUndefined(a)&&!_.isNull(a)},b.setUrlToElem=function(a,c){return b.setFieldToElem(b.restangularFields.selfLink,a,c),this},b.getUrlFromElem=function(a){return b.getFieldFromElem(b.restangularFields.selfLink,a)},b.useCannonicalId=_.isUndefined(b.useCannonicalId)?!1:b.useCannonicalId,a.setUseCannonicalId=function(a){return b.useCannonicalId=a,this},b.getCannonicalIdFromElem=function(a){var c=a[b.restangularFields.cannonicalId],d=b.isValidId(c)?c:b.getIdFromElem(a);return d},b.responseInterceptors=b.responseInterceptors||[],b.defaultResponseInterceptor=function(a){return a},b.responseExtractor=function(a,c,d,e,f,g){var h=angular.copy(b.responseInterceptors);h.push(b.defaultResponseInterceptor);var i=a;return _.each(h,function(a){i=a(i,c,d,e,f,g)}),i},a.addResponseInterceptor=function(a){return b.responseInterceptors.push(a),this},b.errorInterceptors=b.errorInterceptors||[],a.addErrorInterceptor=function(a){return b.errorInterceptors.push(a),this},a.setResponseInterceptor=a.addResponseInterceptor,a.setResponseExtractor=a.addResponseInterceptor,a.setErrorInterceptor=a.addErrorInterceptor,b.requestInterceptors=b.requestInterceptors||[],b.defaultInterceptor=function(a,b,c,d,e,f,g){return{element:a,headers:e,params:f,httpConfig:g}},b.fullRequestInterceptor=function(a,c,d,e,f,g,h){var i=angular.copy(b.requestInterceptors),j=b.defaultInterceptor(a,c,d,e,f,g,h);return _.reduce(i,function(a,b){return _.extend(a,b(a.element,c,d,e,a.headers,a.params,a.httpConfig))},j)},a.addRequestInterceptor=function(a){return b.requestInterceptors.push(function(b,c,d,e,f,g,h){return{headers:f,params:g,element:a(b,c,d,e),httpConfig:h}}),this},a.setRequestInterceptor=a.addRequestInterceptor,a.addFullRequestInterceptor=function(a){return b.requestInterceptors.push(a),this},a.setFullRequestInterceptor=a.addFullRequestInterceptor,b.onBeforeElemRestangularized=b.onBeforeElemRestangularized||function(a){return a},a.setOnBeforeElemRestangularized=function(a){return b.onBeforeElemRestangularized=a,this},a.setRestangularizePromiseInterceptor=function(a){return b.restangularizePromiseInterceptor=a,this},b.onElemRestangularized=b.onElemRestangularized||function(a){return a},a.setOnElemRestangularized=function(a){return b.onElemRestangularized=a,this},b.shouldSaveParent=b.shouldSaveParent||function(){return!0},a.setParentless=function(a){return _.isArray(a)?b.shouldSaveParent=function(b){return!_.includes(a,b)}:_.isBoolean(a)&&(b.shouldSaveParent=function(){return!a}),this},b.suffix=_.isUndefined(b.suffix)?null:b.suffix,a.setRequestSuffix=function(a){return b.suffix=a,this},b.transformers=b.transformers||{},a.addElementTransformer=function(c,d,e){var f=null,g=null;2===arguments.length?g=d:(g=e,f=d);var h=b.transformers[c];return h||(h=b.transformers[c]=[]),h.push(function(a,b){return _.isNull(f)||a===f?g(b):b}),a},a.extendCollection=function(b,c){return a.addElementTransformer(b,!0,c)},a.extendModel=function(b,c){return a.addElementTransformer(b,!1,c)},b.transformElem=function(a,c,d,e,f){if(!f&&!b.transformLocalElements&&!a[b.restangularFields.fromServer])return a;var g=b.transformers[d],h=a;return g&&_.each(g,function(a){h=a(c,h)}),b.onElemRestangularized(h,c,d,e)},b.transformLocalElements=_.isUndefined(b.transformLocalElements)?!1:b.transformLocalElements,a.setTransformOnlyServerElements=function(a){b.transformLocalElements=!a},b.fullResponse=_.isUndefined(b.fullResponse)?!1:b.fullResponse,a.setFullResponse=function(a){return b.fullResponse=a,this},b.urlCreatorFactory={};var f=function(){};f.prototype.setConfig=function(a){return this.config=a,this},f.prototype.parentsArray=function(a){for(var b=[];a;)b.push(a),a=a[this.config.restangularFields.parentResource];return b.reverse()},f.prototype.resource=function(a,d,e,f,g,h,i,j){var k=_.defaults(g||{},this.config.defaultRequestParams.common),l=_.defaults(f||{},this.config.defaultHeaders);i&&(b.isSafe(j)?l["If-None-Match"]=i:l["If-Match"]=i);var m=this.base(a);if(h){var n="";/\/$/.test(m)||(n+="/"),n+=h,m+=n}return this.config.suffix&&-1===m.indexOf(this.config.suffix,m.length-this.config.suffix.length)&&!this.config.getUrlFromElem(a)&&(m+=this.config.suffix),a[this.config.restangularFields.httpConfig]=void 0,c(this.config,d,m,{getList:this.config.withHttpValues(e,{method:"GET",params:k,headers:l}),get:this.config.withHttpValues(e,{method:"GET",params:k,headers:l}),jsonp:this.config.withHttpValues(e,{method:"jsonp",params:k,headers:l}),put:this.config.withHttpValues(e,{method:"PUT",params:k,headers:l}),post:this.config.withHttpValues(e,{method:"POST",params:k,headers:l}),remove:this.config.withHttpValues(e,{method:"DELETE",params:k,headers:l}),head:this.config.withHttpValues(e,{method:"HEAD",params:k,headers:l}),trace:this.config.withHttpValues(e,{method:"TRACE",params:k,headers:l}),options:this.config.withHttpValues(e,{method:"OPTIONS",params:k,headers:l}),patch:this.config.withHttpValues(e,{method:"PATCH",params:k,headers:l})})};var g=function(){};g.prototype=new f,g.prototype.normalizeUrl=function(a){var b=/(http[s]?:\/\/)?(.*)?/.exec(a);return b[2]=b[2].replace(/[\\\/]+/g,"/"),"undefined"!=typeof b[1]?b[1]+b[2]:b[2]},g.prototype.base=function(a){var c=this;return _.reduce(this.parentsArray(a),function(a,d){var e,f=c.config.getUrlFromElem(d);if(f){if(c.config.isAbsoluteUrl(f))return f;e=f}else if(e=d[c.config.restangularFields.route],d[c.config.restangularFields.restangularCollection]){var g=d[c.config.restangularFields.ids];g&&(e+="/"+g.join(","))}else{var h;h=c.config.useCannonicalId?c.config.getCannonicalIdFromElem(d):c.config.getIdFromElem(d),b.isValidId(h)&&!d.singleOne&&(e+="/"+(c.config.encodeIds?encodeURIComponent(h):h))}return a=a.replace(/\/$/,"")+"/"+e,c.normalizeUrl(a)},this.config.baseUrl)},g.prototype.fetchUrl=function(a,b){var c=this.base(a);return b&&(c+="/"+b),c},g.prototype.fetchRequestedUrl=function(a,c){function d(a){var b=[];for(var c in a)a.hasOwnProperty(c)&&b.push(c);return b.sort()}function e(a,b,c){for(var e=d(a),f=0;f<e.length;f++)b.call(c,a[e[f]],e[f]);return e}function f(a,b){return encodeURIComponent(a).replace(/%40/gi,"@").replace(/%3A/gi,":").replace(/%24/g,"$").replace(/%2C/gi,",").replace(/%20/g,b?"%20":"+")}var g=this.fetchUrl(a,c),h=a[b.restangularFields.reqParams];if(!h)return g+(this.config.suffix||"");var i=[];return e(h,function(a,b){null!==a&&void 0!==a&&(angular.isArray(a)||(a=[a]),angular.forEach(a,function(a){angular.isObject(a)&&(a=angular.toJson(a)),i.push(f(b)+"="+f(a))}))}),g+(this.config.suffix||"")+(-1===g.indexOf("?")?"?":"&")+i.join("&")},b.urlCreatorFactory.path=g};var b={};a.init(this,b),this.$get=["$http","$q",function(c,d){function e(b){function f(a,c,d,e,f){if(c[b.restangularFields.route]=d,c[b.restangularFields.getRestangularUrl]=_.bind(P.fetchUrl,P,c),c[b.restangularFields.getRequestedUrl]=_.bind(P.fetchRequestedUrl,P,c),c[b.restangularFields.addRestangularMethod]=_.bind(L,c),c[b.restangularFields.clone]=_.bind(r,c,c),c[b.restangularFields.reqParams]=_.isEmpty(e)?null:e,c[b.restangularFields.withHttpConfig]=_.bind(z,c),c[b.restangularFields.plain]=_.bind(p,c,c),c[b.restangularFields.restangularized]=!0,c[b.restangularFields.one]=_.bind(g,c,c),c[b.restangularFields.all]=_.bind(h,c,c),c[b.restangularFields.several]=_.bind(i,c,c),c[b.restangularFields.oneUrl]=_.bind(j,c,c),c[b.restangularFields.allUrl]=_.bind(k,c,c),c[b.restangularFields.fromServer]=!!f,a&&b.shouldSaveParent(d)){var l=b.getIdFromElem(a),m=b.getUrlFromElem(a),n=_.union(_.values(_.pick(b.restangularFields,["route","singleOne","parentResource"])),b.extraFields),o=_.pick(a,n);b.isValidId(l)&&b.setIdToElem(o,l,d),b.isValidId(m)&&b.setUrlToElem(o,m,d),c[b.restangularFields.parentResource]=o}else c[b.restangularFields.parentResource]=null;return c}function g(a,c,d,e){var f;if(_.isNumber(c)||_.isNumber(a))throw f="You're creating a Restangular entity with the number ",f+="instead of the route or the parent. For example, you can't call .one(12).",new Error(f);if(_.isUndefined(c))throw f="You're creating a Restangular entity either without the path. ",f+="For example you can't call .one(). Please check if your arguments are valid.",new Error(f);var g={};return b.setIdToElem(g,d,c),b.setFieldToElem(b.restangularFields.singleOne,g,e),s(a,g,c,!1)}function h(a,b){return t(a,[],b,!1)}function i(a,c){var d=[];return d[b.restangularFields.ids]=Array.prototype.splice.call(arguments,2),t(a,d,c,!1)}function j(a,c,d){if(!c)throw new Error("Route is mandatory when creating new Restangular objects.");var e={};return b.setUrlToElem(e,d,c),s(a,e,c,!1)}function k(a,c,d){if(!c)throw new Error("Route is mandatory when creating new Restangular objects.");var e={};return b.setUrlToElem(e,d,c),t(a,e,c,!1)}function l(a,c,d){return a.call=_.bind(m,a),a.get=_.bind(n,a),a[b.restangularFields.restangularCollection]=c,c&&(a.push=_.bind(m,a,"push")),a.$object=d,b.restangularizePromiseInterceptor&&b.restangularizePromiseInterceptor(a),a}function m(a){var c=d.defer(),e=arguments,f={};return this.then(function(b){var d=Array.prototype.slice.call(e,1),g=b[a];g.apply(b,d),f=b,c.resolve(b)}),l(c.promise,this[b.restangularFields.restangularCollection],f)}function n(a){var c=d.defer(),e={};return this.then(function(b){e=b[a],c.resolve(e)}),l(c.promise,this[b.restangularFields.restangularCollection],e)}function o(a,c,d,e){return _.extend(e,d),b.fullResponse?a.resolve(_.extend(c,{data:d})):void a.resolve(d)}function p(a){if(_.isArray(a)){var c=[];return _.each(a,function(a){c.push(b.isRestangularized(a)?p(a):a)}),c}return _.omit(a,_.values(_.omit(b.restangularFields,"id")))}function q(a){a[b.restangularFields.customOperation]=_.bind(K,a),_.each(["put","post","get","delete"],function(b){_.each(["do","custom"],function(c){var d,e="delete"===b?"remove":b,f=c+b.toUpperCase();d="put"!==e&&"post"!==e?K:function(a,b,c,d,e){return _.bind(K,this)(a,c,d,e,b)},a[f]=_.bind(d,a,e)})}),a[b.restangularFields.customGETLIST]=_.bind(y,a),a[b.restangularFields.doGETLIST]=a[b.restangularFields.customGETLIST]}function r(a,c){var d=angular.copy(a,c);return s(d[b.restangularFields.parentResource],d,d[b.restangularFields.route],!0)}function s(a,c,d,e,g,h){var i=b.onBeforeElemRestangularized(c,!1,d),j=f(a,i,d,h,e);return b.useCannonicalId&&(j[b.restangularFields.cannonicalId]=b.getIdFromElem(j)),g&&(j[b.restangularFields.getParentList]=function(){return g}),j[b.restangularFields.restangularCollection]=!1,j[b.restangularFields.get]=_.bind(C,j),j[b.restangularFields.getList]=_.bind(y,j),j[b.restangularFields.put]=_.bind(E,j),j[b.restangularFields.post]=_.bind(F,j),j[b.restangularFields.remove]=_.bind(D,j),j[b.restangularFields.head]=_.bind(G,j),j[b.restangularFields.trace]=_.bind(H,j),j[b.restangularFields.options]=_.bind(I,j),j[b.restangularFields.patch]=_.bind(J,j),j[b.restangularFields.save]=_.bind(A,j),q(j),b.transformElem(j,!1,d,O,!0)}function t(a,c,d,e,g){var h=b.onBeforeElemRestangularized(c,!0,d),i=f(a,h,d,g,e);return i[b.restangularFields.restangularCollection]=!0,i[b.restangularFields.post]=_.bind(F,i,null),i[b.restangularFields.remove]=_.bind(D,i),i[b.restangularFields.head]=_.bind(G,i),i[b.restangularFields.trace]=_.bind(H,i),i[b.restangularFields.putElement]=_.bind(w,i),i[b.restangularFields.options]=_.bind(I,i),i[b.restangularFields.patch]=_.bind(J,i),i[b.restangularFields.get]=_.bind(v,i),i[b.restangularFields.getList]=_.bind(y,i,null),q(i),b.transformElem(i,!0,d,O,!0)}function u(a,b,c){var d=t(a,b,c,!1);return _.each(d,function(b){s(a,b,c,!1)}),d}function v(a,b,c){return this.customGET(a.toString(),b,c)}function w(a,c,e){var f=this,g=this[a],h=d.defer(),i=[];return i=b.transformElem(i,!0,g[b.restangularFields.route],O),g.put(c,e).then(function(b){var c=r(f);c[a]=b,i=c,h.resolve(c)},function(a){h.reject(a)}),l(h.promise,!0,i)}function x(a,c,d,e,f,g){var h=b.responseExtractor(a,c,d,e,f,g),i=f.headers("ETag");return h&&i&&(h[b.restangularFields.etag]=i),h}function y(a,e,f){var g=this,h=d.defer(),i="getList",j=P.fetchUrl(this,a),k=a||g[b.restangularFields.route],m=b.fullRequestInterceptor(null,i,k,j,f||{},e||{},this[b.restangularFields.httpConfig]||{}),n=[];n=b.transformElem(n,!0,k,O);var p="getList";b.jsonp&&(p="jsonp");var q=function(c){var d=c.data,e=c.config.params,f=x(d,i,k,j,c,h);if((_.isUndefined(f)||""===f)&&(f=[]),!_.isArray(f))throw new Error("Response for getList SHOULD be an array and not an object or something else");var l=_.map(f,function(c){return g[b.restangularFields.restangularCollection]?s(g[b.restangularFields.parentResource],c,g[b.restangularFields.route],!0,f):s(g,c,a,!0,f)});l=_.extend(f,l),g[b.restangularFields.restangularCollection]?o(h,c,t(g[b.restangularFields.parentResource],l,g[b.restangularFields.route],!0,e),n):o(h,c,t(g,l,a,!0,e),n)};return P.resource(this,c,m.httpConfig,m.headers,m.params,a,this[b.restangularFields.etag],i)[p]().then(q,function(a){304===a.status&&g[b.restangularFields.restangularCollection]?o(h,a,g,n):_.every(b.errorInterceptors,function(b){return b(a,h,q)!==!1})&&h.reject(a)}),l(h.promise,!0,n)}function z(a){return this[b.restangularFields.httpConfig]=a,this}function A(a,c){return this[b.restangularFields.fromServer]?this[b.restangularFields.put](a,c):_.bind(B,this)("post",void 0,a,void 0,c)}function B(a,e,f,g,h){var i=this,j=d.defer(),k=f||{},m=e||this[b.restangularFields.route],n=P.fetchUrl(this,e),q=g||this,r=q[b.restangularFields.etag]||("post"!==a?this[b.restangularFields.etag]:null);_.isObject(q)&&b.isRestangularized(q)&&(q=p(q));var t=b.fullRequestInterceptor(q,a,m,n,h||{},k||{},this[b.restangularFields.httpConfig]||{}),u={};u=b.transformElem(u,!1,m,O);var v=function(c){var d=c.data,e=c.config.params,f=x(d,a,m,n,c,j);if(f){var g;"post"!==a||i[b.restangularFields.restangularCollection]?(g=s(i[b.restangularFields.parentResource],f,i[b.restangularFields.route],!0,null,e),g[b.restangularFields.singleOne]=i[b.restangularFields.singleOne],o(j,c,g,u)):(g=s(i[b.restangularFields.parentResource],f,m,!0,null,e),o(j,c,g,u))}else o(j,c,void 0,u)},w=function(c){304===c.status&&b.isSafe(a)?o(j,c,i,u):_.every(b.errorInterceptors,function(a){return a(c,j,v)!==!1})&&j.reject(c)},y=a,z=_.extend({},t.headers),A=b.isOverridenMethod(a);return A?(y="post",z=_.extend(z,{"X-HTTP-Method-Override":"remove"===a?"DELETE":a.toUpperCase()})):b.jsonp&&"get"===y&&(y="jsonp"),b.isSafe(a)?A?P.resource(this,c,t.httpConfig,z,t.params,e,r,y)[y]({}).then(v,w):P.resource(this,c,t.httpConfig,z,t.params,e,r,y)[y]().then(v,w):P.resource(this,c,t.httpConfig,z,t.params,e,r,y)[y](t.element).then(v,w),l(j.promise,!1,u)}function C(a,b){return _.bind(B,this)("get",void 0,a,void 0,b)}function D(a,b){return _.bind(B,this)("remove",void 0,a,void 0,b)}function E(a,b){return _.bind(B,this)("put",void 0,a,void 0,b)}function F(a,b,c,d){return _.bind(B,this)("post",a,c,b,d)}function G(a,b){return _.bind(B,this)("head",void 0,a,void 0,b)}function H(a,b){return _.bind(B,this)("trace",void 0,a,void 0,b)}function I(a,b){return _.bind(B,this)("options",void 0,a,void 0,b)}function J(a,b,c){return _.bind(B,this)("patch",void 0,b,a,c)}function K(a,b,c,d,e){return _.bind(B,this)(a,b,c,e,d)}function L(a,c,d,e,f,g){var h;h="getList"===c?_.bind(y,this,d):_.bind(K,this,c,d);var i=function(a,b,c){var d=_.defaults({params:a,headers:b,elem:c},{params:e,headers:f,elem:g});return h(d.params,d.headers,d.elem)};b.isSafe(c)?this[a]=i:this[a]=function(a,b,c){return i(b,c,a)}}function M(c){var d=angular.copy(_.omit(b,"configuration"));return a.init(d,d),c(d),e(d)}function N(a,c){var d=_.values(b.restangularFields),e={},f=(c||O).all(a);e.one=_.bind(g,c||O,c,a),e.post=_.bind(f.post,f),e.getList=_.bind(f.getList,f);for(var h in f)f.hasOwnProperty(h)&&_.isFunction(f[h])&&!_.includes(d,h)&&(e[h]=_.bind(f[h],f));return e}var O={},P=new b.urlCreatorFactory[b.urlCreator];return P.setConfig(b),a.init(O,b),O.copy=_.bind(r,O),O.service=_.bind(N,O),O.withConfig=_.bind(M,O),O.one=_.bind(g,O,null),O.all=_.bind(h,O,null),O.several=_.bind(i,O,null),O.oneUrl=_.bind(j,O,null),O.allUrl=_.bind(k,O,null),O.stripRestangular=_.bind(p,O),O.restangularizeElement=_.bind(s,O),O.restangularizeCollection=_.bind(u,O),O}return e(b)}]})}();
 }).call(this,require("qC859L"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\node_modules\\restangular\\dist\\restangular.min.js","/..\\node_modules\\restangular\\dist")
-},{"buffer":30,"qC859L":33}]},{},[15])
+},{"buffer":33,"qC859L":36}]},{},[18])

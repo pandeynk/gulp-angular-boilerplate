@@ -14,24 +14,24 @@ var APIService=function(Restangular, $window, API_URL){
           }
         })
         .addFullRequestInterceptor(function (element, operation, what, url, headers) {
-          var token = $window.localStorage.satellizer_token;
+          var token = $window.sessionStorage.token;
           if (token) {
-            headers.Authorization = 'Bearer ' + token;
+            headers.Authorization = 'Basic ' + token;
           }
         })
         .addResponseInterceptor(function (response, operation, what) {
-          if (operation === 'getList') {
+          /*if (operation === 'getList') {
             var newResponse = response.data[what];
             newResponse.error = response.error;
             return newResponse;
-          }
+          }*/
 
           return response;
         });
     });
 };
 
-APIService.$inject=['Restangular', '$window'];
+APIService.$inject=['Restangular', '$window', 'API_URL'];
 
 module.exports=APIService;
 

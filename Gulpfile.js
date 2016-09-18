@@ -37,6 +37,7 @@ gulp.task('vendor-css', function(){
 
 gulp.task('vendor-js', function(){
     gulp.src([
+            './build/lodash.min.js',
             './bower_components/jquery/dist/jquery.min.js',
             './bower_components/bootstrap/dist/js/bootstrap.min.js',
             //'./bower_components/datatables/media/js/dataTables.bootstrap.js',
@@ -109,4 +110,4 @@ gulp.task('watch', function() {
 
 gulp.task('build', ['config', 'browserify-client','bower', 'css', 'html']);
 
-gulp.task('default', ['build', 'watch']);
+gulp.task('default', ['build']);

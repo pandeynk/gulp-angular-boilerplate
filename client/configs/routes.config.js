@@ -28,6 +28,69 @@ var RoutesConfig=function($stateProvider, $urlRouterProvider){
           successMsg: null
         }
       })
+      .state('cadiq.users', {
+        url: '/users',
+        views:{
+          'header@cadiq': {
+            templateUrl: './templates/header/header.view.html'
+          },
+          'content@cadiq':{
+            templateUrl:'./templates/user/user-list/user-list.view.html',
+            controller:'UserListController'
+          },
+          'footer@cadiq': {}
+        },
+        data: {
+          bodyClass: 'hold-transition',
+          auth:true
+        },
+        params: {
+          registerSuccess: null,
+          successMsg: null
+        }
+      })
+      .state('cadiq.users.add', {
+        url: '/add',
+        views:{
+          'header@cadiq': {
+            templateUrl: './templates/header/header.view.html'
+          },
+          'content@cadiq':{
+            templateUrl:'./templates/user/user-add/user-add.view.html',
+            controller:'UserAddController'
+          },
+          'footer@cadiq': {}
+        },
+        data: {
+          bodyClass: 'hold-transition',
+          auth:true
+        },
+        params: {
+          registerSuccess: null,
+          successMsg: null
+        }
+      })
+      .state('cadiq.users.edit', {
+        url: '/edit/:userId',
+        views:{
+          'header@cadiq': {
+            templateUrl: './templates/header/header.view.html'
+          },
+          'content@cadiq':{
+            templateUrl:'./templates/user/user-edit/user-edit.view.html',
+            controller:'UserEditController'
+          },
+          'footer@cadiq': {}
+        },
+        data: {
+          bodyClass: 'hold-transition',
+          auth:true
+        },
+        params: {
+          registerSuccess: null,
+          successMsg: null
+        }
+      })
       .state('login', {
         url: '/login',
         templateUrl:'./templates/login/login.view.html',
@@ -39,22 +102,13 @@ var RoutesConfig=function($stateProvider, $urlRouterProvider){
           registerSuccess: null,
           successMsg: null
         }
-      });
-/*      .state('app.logout', {
-      url: '/logout',
-      views: {
-        'main@app': {
-          controller: function ($rootScope, $scope, $auth, $state, AclService) {
-            $auth.logout().then(function () {
-              delete $rootScope.me
-              AclService.flushRoles()
-              AclService.setAbilities({})
-              $state.go('login')
-            })
-          }
+      })
+      .state('logout', {
+        url: '/logout',
+        controller: function ($scope, $auth) {
+          $auth.logout();
         }
-      }
-    });*/
+    });
 };
 
 RoutesConfig.$inject=['$stateProvider', '$urlRouterProvider'];
